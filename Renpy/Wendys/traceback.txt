@@ -1,0 +1,42 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+IOError: Couldn't find file 'main-menu-theme.ogg'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
+    python hide:
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\ast.py", line 914, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\python.py", line 2028, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
+    python hide:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
+    ui.interact()
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\ui.py", line 297, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\display\core.py", line 2702, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\display\core.py", line 3380, in interact_core
+    renpy.audio.audio.periodic()
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\audio\audio.py", line 1060, in periodic
+    six.reraise(exc[0], exc[1], exc[2])
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\audio\audio.py", line 1038, in periodic_thread_main
+    periodic_pass()
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\audio\audio.py", line 979, in periodic_pass
+    c.periodic()
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\audio\audio.py", line 457, in periodic
+    topf = load(self.file_prefix + filename + self.file_suffix)
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\audio\audio.py", line 73, in load
+    rv = renpy.loader.load(fn)
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\loader.py", line 576, in load
+    raise IOError("Couldn't find file '%s'." % name)
+IOError: Couldn't find file 'main-menu-theme.ogg'.
+
+Windows-8-6.2.9200
+Ren'Py 7.3.5.606
+Wendys 1.0
+Sat Oct 19 15:37:08 2019
