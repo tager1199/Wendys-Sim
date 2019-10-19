@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 14: expected statement.
-    playername = renpy.unput("What is your name")
-               ^
+File "game/script.rpy", line 74: Line is indented, but the preceding scene statement statement does not expect a block. Please check this line's indentation.
+    menu:
+    ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Sat Oct 19 16:55:04 2019
+Sat Oct 19 19:36:14 2019
