@@ -1,22 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 76, in script
-    player "Ah it feels good to be up and about!"
-Exception: Sayer 'player' is not defined.
+  File "game/script.rpy", line 223, in script
+    jump gonehome
+ScriptError: could not find label 'gonehome'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 76, in script
-    player "Ah it feels good to be up and about!"
-  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\ast.py", line 678, in execute
-    who = eval_who(self.who, self.who_fast)
-  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\ast.py", line 576, in eval_who
-    raise Exception("Sayer '%s' is not defined." % who.encode("utf-8"))
-Exception: Sayer 'player' is not defined.
+  File "game/script.rpy", line 223, in script
+    jump gonehome
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\ast.py", line 1697, in execute
+    rv = renpy.game.script.lookup(target)
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\script.py", line 898, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'gonehome'.
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
 Wendys 1.0
-Sun Oct 20 05:04:07 2019
+Sun Oct 20 10:32:21 2019

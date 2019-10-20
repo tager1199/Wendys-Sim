@@ -6,7 +6,9 @@
 define e = Character("[playername]")
 define main = Character("Wendy")
 define friend = Character("Hayley")
-$ wendys = 0
+define wendys = 0
+define date = False
+define fuck = False
 # The game starts here.
 
 
@@ -124,7 +126,7 @@ label Out:
          "Where do you want to go for lunch?"
          "McDonalds":
              $ mcdonalds = True
-             $ wendys -= 2
+             $ wendys = wendys - 2
              friend "McDonalds sounds great, let's go!"
              jump mcdonaldslunch
 
@@ -140,6 +142,77 @@ label Out:
 
 
 label wendyslunch:
+    $ annoyed = False
+    scene wendysinside
+    show sexywendy
+    main "Hi, how may I help you?"
+    "You notice you are being server by Wendy. The Wendy and she looks stunning!"
+    show player smart
+    menu:
+         "What are you ordering?"
+         "Barbecue Cheeseburger Double":
+             main "Great choice."
+         "Homestyle Bacon Jalepeño Chicken":
+             main "Great choice. That's my personal favourite!"
+             $ wendys += 1
+         "Big Mac":
+             main "Haha. Very funny"
+             "She looks very annoyed"
+             $ annoyed = True
+             $ wendys -= 2
+         "Caesar Side Salad":
+             main "Good choice"
+    show sexywendy
+    main "Thanks for coming. Enjoy your food!"
+    scene wendystable
+    "You sit down to eat your food"
+    show friend
+    if annoyed:
+        friend "OMG!!! Why were you so rude to her?"
+        "You and heyley finish your food in silence before heading home"
+        jump gonehome
+    friend "OMG!!! SHE'S TOTALY INTO YOU"
+    friend "You should ask her out"
+    menu:
+         "Are you going to ask out Wendy?"
+         "Yes!":
+             scene wendysinside
+             show sexywendy
+             main "Hi, Welcome to Wendy's how....."
+             main "Oh hi again. How can I help you?"
+             menu:
+                 "What will you do?"
+                 "Just ask her out":
+                     show player smart
+                     e "Would you like to go out on a date sometime?"
+                     show sexywendy
+                     if wendys > 3:
+                         main "Sure, here's my number. Give me a call sometime."
+                         $ date = True
+                         jump gonehome
+                     main "Sorry, I dont think that would be a good idea."
+                     jump gonehome
+                 "Use a cheesey pick-up line":
+                     show player smart
+                     e "Is that burger behind you burning or are you just smokin'"
+                     show sexywendy
+                     if wendys > 4:
+                         main "HaHa. When do you want to meet up?"
+                         $ date = True
+                         jump gonehome
+                     main "Nice line but no thanks."
+                     jump gonehome
+                 "The earth is a dinosaur":
+                     $ wendys += 10
+                     main "TAKE ME, RIGHT HERE, RIGHT NOW!"
+                     "You and Wendy head back to your house."
+                      $ fuck = True
+                      jump gonehome
+         "No":
+             friend "Awww! You're sooo boring!"
+             "You and heyley finish your food before heading home"
+             $ wendys += 1
+
 
 label mcdonaldslunch:
     scene mcdonalds
@@ -162,11 +235,11 @@ label mcdonaldslunch:
     "As you eat and chat with Hayley you notice someone out the window"
     "You realise it's Wendy, the Wendy and she seems to have made eye contact with you!"
     scene mcdonaldstable
-    show player
+    show player smart
     e "Hey isn't that Wendy out there."
     show friend
     friend "Who?! I cant see anyone."
-    show player
+    show player smart
     e "Nevermind my mind must have been playing tricks on me."
     "You finish eating and head home, parting from Hayley along the way"
     jump gonehome
@@ -174,4 +247,4 @@ label mcdonaldslunch:
 label homelunch:
 
 
-label goneehome:
+label gonehome:
