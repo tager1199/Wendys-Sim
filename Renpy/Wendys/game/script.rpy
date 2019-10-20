@@ -6,7 +6,7 @@
 define e = Character("[playername]")
 define main = Character("Wendy")
 define friend = Character("Hayley")
-
+$ wendys = 0
 # The game starts here.
 
 
@@ -56,6 +56,15 @@ label GetUp:
 
     show player smart
     "Now you're up and ready to get on with your day. "
+    if gametime > 7:
+            scene bg stairs
+            "As you descend the stairs theres a knock at the door"
+            scene bg hall
+            show friend
+            "It's your best friend Heyley. She's just burst through the door!"
+            friend  "What took you so long? Come on lets go!"
+            scene outside
+            jump Out
     menu:
          "What are you going to do?"
 
@@ -73,6 +82,7 @@ label Breakfast:
     "You head downstairs and into your dining room"
     scene bg kitchen
     show player smart
+    e "Ah it feels good to be up and about!"
     menu:
          "What are you eating for breakfast?"
 
@@ -99,26 +109,27 @@ label OutEarly:
     "You step out the house just as your best friend comes running up"
     show friend
     friend "Hey you're out early, you must be excited. ME TOO!"
-    jump Out
 
 label Out:
     "Hayley drags you outside and towards the town"
     scene outtown
-    friend "Come on lets go to the park"
-    scene park
-    "You play at the park for a few hours before its time to go for lunch"
+    if gametime < 12:
+        friend "Come on lets go to the park"
+        scene parkfull
+        "You play at the park for a few hours before its time to go for lunch"
+        scene parkempty
     show friend
     friend "Where do you want to go for lunch? I'm feeling like some fast food."
     menu:
          "Where do you want to go for lunch?"
-
          "McDonalds":
              $ mcdonalds = True
+             $ wendys -= 2
              friend "McDonalds sounds great, let's go!"
              jump mcdonaldslunch
 
          "Wendys":
-             $ wendys = 1
+             $ wendys =+ 1
              friend "Wendys! I LOVE Wendys!"
              jump wendyslunch
          "Go home to make something":
@@ -128,8 +139,39 @@ label Out:
 
 
 
-label wendysLunch:
+label wendyslunch:
 
-label mcdonaldsLunch:
+label mcdonaldslunch:
+    scene mcdonalds
+    show friend
+    friend "What are you getting? I'm getting some chicken nugs!"
+    menu:
+         "What are you ordering?"
+         "McChicken Sandwich":
+             "Hayley seems pleased with your choice"
+         "Filet-O-Fish":
+             "Hayley seems dissapointed with your choice"
+         "Big Mac":
+             "Hayley seems pleased with your choice"
+         "Salad":
+             "Hayley seems dissapointed with your choice"
+    scene mcdonaldstable
+    show friend
+    friend "Thanks for coming today [playername]. I had a great day"
+    scene mcdonaldswendy
+    "As you eat and chat with Hayley you notice someone out the window"
+    "You realise it's Wendy, the Wendy and she seems to have made eye contact with you!"
+    scene mcdonaldstable
+    show player
+    e "Hey isn't that Wendy out there."
+    show friend
+    friend "Who?! I cant see anyone."
+    show player
+    e "Nevermind my mind must have been playing tricks on me."
+    "You finish eating and head home, parting from Hayley along the way"
+    jump gonehome
 
-label homeLunch:
+label homelunch:
+
+
+label goneehome:

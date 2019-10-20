@@ -1,26 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 14, in script
-    $ playername = renpy.unput("What is your name")
-  File "game/script.rpy", line 14, in <module>
-    $ playername = renpy.unput("What is your name")
-AttributeError: 'module' object has no attribute 'unput'
+  File "game/script.rpy", line 76, in script
+    player "Ah it feels good to be up and about!"
+Exception: Sayer 'player' is not defined.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 14, in script
-    $ playername = renpy.unput("What is your name")
-  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\ast.py", line 914, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\python.py", line 2028, in py_exec_bytecode
-    exec bytecode in globals, locals
-  File "game/script.rpy", line 14, in <module>
-    $ playername = renpy.unput("What is your name")
-AttributeError: 'module' object has no attribute 'unput'
+  File "game/script.rpy", line 76, in script
+    player "Ah it feels good to be up and about!"
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\ast.py", line 678, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "C:\Users\computing\Downloads\renpy-7.3.5-sdk\renpy\ast.py", line 576, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who.encode("utf-8"))
+Exception: Sayer 'player' is not defined.
 
 Windows-8-6.2.9200
 Ren'Py 7.3.5.606
 Wendys 1.0
-Sat Oct 19 16:56:18 2019
+Sun Oct 20 05:04:07 2019
