@@ -270,6 +270,7 @@ label homelunch:
 
 
 label gonehome:
+     scene bg living
      "After lunch you get on with some work"
      "You've been working for a few hours now and are getting hungry"
      "It's dinner time"
@@ -401,20 +402,19 @@ label mcdonaldsdinner:
     menu:
          "What are you ordering?"
          "McChicken Sandwich":
-             "Hayley seems pleased with your choice"
+             ""
          "Filet-O-Fish":
-             "Hayley seems dissapointed with your choice"
+             ""
          "Big Mac":
-             "Hayley seems pleased with your choice"
+             ""
          "Salad":
-             "Hayley seems dissapointed with your choice"
+             ""
     scene mcdonaldstable
     scene mcdonaldswendy
-    "As you eat and chat with Hayley you notice someone out the window"
+    "As you eat you notice someone out the window"
     "You realise it's Wendy, the Wendy and she seems to have made eye contact with you!"
     scene mcdonaldstable
-    show player smart
-    e "You think she must have been judgin you on your food choices."
+    "You think she must have been judging you on your food choices."
     "You finish eating and head home"
     jump homefin
 
@@ -452,8 +452,8 @@ label homefin:
     if date:
         "You and Wendy are now dating and live happily ever after"
         return
-    if mcdonald:
-        play music "mcdonald.ogg"
+    if mcdonalds:
+        play music "/audio/mcdonald.mp3"
     "The day is over"
     "You head to bed"
     "A cold, empty bed"

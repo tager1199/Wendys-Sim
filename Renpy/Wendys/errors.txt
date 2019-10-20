@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 393: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation.
-    $ fuck = True
+File "game/script.rpy", line 274: Line is indented, but the preceding scene statement statement does not expect a block. Please check this line's indentation.
+    "After lunch you get on with some work"
     ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Sun Oct 20 11:47:27 2019
+Sun Oct 20 12:04:19 2019
