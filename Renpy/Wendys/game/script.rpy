@@ -9,6 +9,8 @@ define friend = Character("Hayley")
 define wendys = 0
 define date = False
 define fuck = False
+define wenlunch = False
+define mcdonalds = False
 # The game starts here.
 
 
@@ -126,13 +128,14 @@ label Out:
          "Where do you want to go for lunch?"
          "McDonalds":
              $ mcdonalds = True
-             $ wendys = wendys - 2
+             $ wendys -= 2
              friend "McDonalds sounds great, let's go!"
              jump mcdonaldslunch
 
          "Wendys":
              $ wendys =+ 1
              friend "Wendys! I LOVE Wendys!"
+             $ wenlunch = True
              jump wendyslunch
          "Go home to make something":
              friend "Really? if you're sure!"
@@ -206,8 +209,8 @@ label wendyslunch:
                      $ wendys += 10
                      main "TAKE ME, RIGHT HERE, RIGHT NOW!"
                      "You and Wendy head back to your house."
-                      $ fuck = True
-                      jump gonehome
+                     $ fuck = True
+                     jump homefin
          "No":
              friend "Awww! You're sooo boring!"
              "You and heyley finish your food before heading home"
@@ -245,6 +248,214 @@ label mcdonaldslunch:
     jump gonehome
 
 label homelunch:
+    "After some protests from Hayley you convice her to head home for lunch"
+    scene outside
+    "You both head back to your house and head inside and to the dining room"
+    scene bg kitchen
+    show friend
+    friend "So what are we eating?"
+    menu:
+         "What are you ordering?"
+         "Something Meaty":
+             "Hayley seems pleased with your choice"
+             friend "The food was great, thanks [playername]. See you tomorrow"
+             "You show Hayley out and she heads home."
+         "Something Vegetarian":
+             "Hayley seems dissapointed with your choice"
+             friend "The food was good, thanks [playername]. See you tomorrow"
+             "You show Hayley out and she heads home."
+         "Something Vegan":
+             friend "Really?? I'm just going to eat at my house. See you tomorrow"
+             "Hayley storms out and heads home."
 
 
 label gonehome:
+     "After lunch you get on with some work"
+     "You've been working for a few hours now and are getting hungry"
+     "It's dinner time"
+     menu:
+         "Where are you going for dinner?"
+         "McDonalds":
+             $ mcdonalds = True
+             $ wendys -= 2
+             jump mcdonaldsdinner
+
+         "Wendys":
+             $ wendys =+ 1
+             jump wendysdinner
+         "Stay in and order some pizza.":
+             jump homedinner
+
+label wendysdinner:
+    if wenlunch == False:
+        $ annoyed = False
+        scene wendysinside
+        show sexywendy
+        main "Hi, how may I help you?"
+        "You notice you are being server by Wendy. The Wendy and she looks stunning!"
+        show player smart
+        menu:
+             "What are you ordering?"
+             "Barbecue Cheeseburger Double":
+                 main "Great choice."
+             "Homestyle Bacon Jalepeño Chicken":
+                 main "Great choice. That's my personal favourite!"
+                 $ wendys += 1
+             "Big Mac":
+                 main "Haha. Very funny"
+                 "She looks very annoyed"
+                 $ annoyed = True
+                 $ wendys -= 2
+             "Caesar Side Salad":
+                 main "Good choice"
+        show sexywendy
+        main "Thanks for coming. Enjoy your food!"
+        scene wendystable
+        "You sit down to eat your food"
+        if annoyed:
+            "You seem to have annoyed the server"
+            "You eat your food and head home"
+            jump homefin
+        "You seem to think that wendy might be interested in you"
+        menu:
+             "Are you going to ask out Wendy?"
+             "Yes!":
+                 scene wendysinside
+                 show sexywendy
+                 main "Hi, Welcome to Wendy's how....."
+                 main "Oh hi again. How can I help you?"
+                 menu:
+                     "What will you do?"
+                     "Just ask her out":
+                         show player smart
+                         e "Would you like to go out on a date sometime?"
+                         show sexywendy
+                         if wendys > 3:
+                             main "Sure, here's my number. Give me a call sometime."
+                             $ date = True
+                             jump homefin
+                         main "Sorry, I dont think that would be a good idea."
+                         jump homefin
+                     "Use a cheesey pick-up line":
+                         show player smart
+                         e "Is that burger behind you burning or are you just smokin'"
+                         show sexywendy
+                         if wendys > 4:
+                             main "HaHa. When do you want to meet up?"
+                             $ date = True
+                             jump homefin
+                         main "Nice line but no thanks."
+                         jump homefin
+                     "The earth is a dinosaur":
+                         $ wendys += 10
+                         main "TAKE ME, RIGHT HERE, RIGHT NOW!"
+                         "You and Wendy head back to your house."
+                         $ fuck = True
+                         jump homefin
+             "No":
+                 "You finish your food before heading home"
+                 jump homenull
+    show sexywendy
+    $ wendys += 1
+    main "Fancy seeing you here again"
+    main "What can i get you?"
+    show player
+    e "Same as before please"
+    scene wendystable
+    "You get the same meal as last time"
+    "As you finish you get the urge to ask Wendy out."
+    menu:
+         "What will you do?"
+         "Just ask her out":
+             show player smart
+             e "Would you like to go out on a date sometime?"
+             show sexywendy
+             if wendys > 3:
+                 main "Sure, here's my number. Give me a call sometime."
+                 $ date = True
+                 jump homefin
+             main "Sorry, I dont think that would be a good idea."
+             jump homefin
+         "Use a cheesey pick-up line":
+             show player smart
+             e "Is that burger behind you burning or are you just smokin'"
+             show sexywendy
+             if wendys > 4:
+                 main "HaHa. When do you want to meet up?"
+                 $ date = True
+                 jump homefin
+             main "Nice line but no thanks."
+             jump homefin
+         "The earth is a dinosaur":
+             $ wendys += 10
+             main "TAKE ME, RIGHT HERE, RIGHT NOW!"
+             "You and Wendy head back to your house."
+             $ fuck = True
+             jump homefin
+         "Just leave":
+              jump homefin
+
+
+label mcdonaldsdinner:
+    scene mcdonalds
+    menu:
+         "What are you ordering?"
+         "McChicken Sandwich":
+             "Hayley seems pleased with your choice"
+         "Filet-O-Fish":
+             "Hayley seems dissapointed with your choice"
+         "Big Mac":
+             "Hayley seems pleased with your choice"
+         "Salad":
+             "Hayley seems dissapointed with your choice"
+    scene mcdonaldstable
+    scene mcdonaldswendy
+    "As you eat and chat with Hayley you notice someone out the window"
+    "You realise it's Wendy, the Wendy and she seems to have made eye contact with you!"
+    scene mcdonaldstable
+    show player smart
+    e "You think she must have been judgin you on your food choices."
+    "You finish eating and head home"
+    jump homefin
+
+label homedinner:
+    "You order the pizza and put a film on while you wait"
+    scene bg living
+    "You see Wendy walk past through your window."
+    if wenlunch:
+        menu:
+             "Do you invite Wendy in for pizza and a film?"
+             "Yes":
+                 scene outside
+                 show player
+                 e "Hey Wendy, Do you want to come in for pizza and a film?"
+                 show sexywendy
+                 if wendys > 5:
+                      main "Sure, that sounds great"
+                      $ fuck = True
+                      jump homefin
+                 if wendys > 3:
+                     main "Sure, that sounds great"
+                     $ date = True
+                     jump homefin
+                 "No sorry, I wouldnt be comfortable with that."
+             "No":
+                 jump homefin
+
+label homefin:
+    scene bg room
+    if fuck:
+        show wendybed
+        main "Lets do this"
+        "You and Wendy go to bed together and have the night of your life"
+        return
+    if date:
+        "You and Wendy are now dating and live happily ever after"
+        return
+    if mcdonald:
+        play music "mcdonald.ogg"
+    "The day is over"
+    "You head to bed"
+    "A cold, empty bed"
+    "You are alone forever"
+    return
