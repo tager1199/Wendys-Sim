@@ -215,6 +215,7 @@ label wendyslunch:
              friend "Awww! You're sooo boring!"
              "You and heyley finish your food before heading home"
              $ wendys += 1
+             jump gonehome
 
 
 label mcdonaldslunch:
@@ -355,7 +356,7 @@ label wendysdinner:
                          jump homefin
              "No":
                  "You finish your food before heading home"
-                 jump homenull
+                 jump homefin
     show sexywendy
     $ wendys += 1
     main "Fancy seeing you here again"
