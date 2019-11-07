@@ -283,7 +283,7 @@ label gonehome:
              jump mcdonaldsdinner
 
          "Wendys":
-             $ wendys =+ 1
+             $ wendys += 1
              jump wendysdinner
          "Stay in and order some pizza.":
              jump homedinner
